@@ -30,14 +30,15 @@ export default class SignUp extends React.Component {
         password
       );
       await createUserProfileDocument(user, { displayName });
+    } catch (err) {
+      console.error(err.message);
+    } finally {
       this.setState({
         displayName: "",
         email: "",
         password: "",
         confirmPassword: "",
       });
-    } catch (err) {
-      console.error(err.message);
     }
   };
   handleChange = (event) => {
@@ -81,7 +82,7 @@ export default class SignUp extends React.Component {
           <FormInput
             name="confirmPassword"
             type="password"
-            autoComplete="password"
+            autoComplete="confirmPassword"
             value={this.state.confirmPassword}
             onChange={this.handleChange}
             id="confirmPassword"

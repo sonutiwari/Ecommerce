@@ -1,7 +1,10 @@
 import React from "react";
 import FormInput from "../form-input/FormInput";
 import CustomButton from "../custom-button/CustomButton";
-import { SIGN_IN_WITH_GOOGLE } from "../../firebase/firebase.utils";
+import {
+  SIGN_IN_WITH_GOOGLE,
+  FIREBASE_AUTH,
+} from "../../firebase/firebase.utils";
 
 import "./SignIn.scss";
 export default class SignIn extends React.Component {
@@ -12,8 +15,18 @@ export default class SignIn extends React.Component {
       password: "",
     };
   }
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const { email, password } = this.state;
+    try {
+      await FIREBASE_AUTH.signInWithEmailAndPassword(email, password);
+      this.setState({
+        email: "",
+        password: "",
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
