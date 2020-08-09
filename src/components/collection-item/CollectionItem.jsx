@@ -9,7 +9,7 @@ const CollectionItem = ({ name, imageUrl, price }) => (
     ></div>
     <div className="collection-footer">
       <span className="name">{name}</span>
-      <span className="price">{price}</span>
+      <span className="price">&#x20B9;{price}</span>
     </div>
   </div>
 );
