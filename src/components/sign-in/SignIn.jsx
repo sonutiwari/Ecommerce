@@ -24,6 +24,7 @@ export default class SignIn extends React.Component {
         email: "",
         password: "",
       });
+      document.getElementById("sign-in-form").reset();
     } catch (err) {
       console.error(err.message);
     }
@@ -36,7 +37,7 @@ export default class SignIn extends React.Component {
       <div className="sign-in">
         <h2>I already have an account</h2>
         <span>Sign In with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="sign-in-form">
           <FormInput
             name="email"
             type="email"
@@ -51,7 +52,7 @@ export default class SignIn extends React.Component {
             type="password"
             autoComplete="password"
             value={this.state.password}
-            onChange={this.handleChange}
+            handleChange={this.handleChange}
             id="password"
             label="Password"
             required

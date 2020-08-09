@@ -39,6 +39,7 @@ export default class SignUp extends React.Component {
         password: "",
         confirmPassword: "",
       });
+      document.getElementById("sign-up-form").reset();
     }
   };
   handleChange = (event) => {
@@ -50,7 +51,7 @@ export default class SignUp extends React.Component {
       <div className="sign-up">
         <h2 className="title">I do not have an account</h2>
         <span>Sign Up with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="sign-up-form">
           <FormInput
             name="displayName"
             type="text"
@@ -72,9 +73,8 @@ export default class SignUp extends React.Component {
           <FormInput
             name="password"
             type="password"
-            autoComplete="password"
             value={this.state.password}
-            onChange={this.handleChange}
+            handleChange={this.handleChange}
             id="password"
             label="Password"
             required
@@ -82,9 +82,8 @@ export default class SignUp extends React.Component {
           <FormInput
             name="confirmPassword"
             type="password"
-            autoComplete="confirmPassword"
             value={this.state.confirmPassword}
-            onChange={this.handleChange}
+            handleChange={this.handleChange}
             id="confirmPassword"
             label="Confirm Password"
             required
