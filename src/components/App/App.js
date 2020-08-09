@@ -4,7 +4,10 @@ import Header from "../header/Header";
 import Homepage from "../../pages/homepage/Homepage";
 import Shoppage from "../../pages/shoppage/Shoppage";
 import AuthPage from "../../pages/authpage/AuthPage";
-import { FIREBASE_AUTH } from "../../firebase/firebase.utils";
+import {
+  FIREBASE_AUTH,
+  createUserProfileDocument,
+} from "../../firebase/firebase.utils";
 import "./App.css";
 
 class App extends Component {
@@ -17,10 +20,27 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.unSubscribeFirebase = FIREBASE_AUTH.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(user);
-    });
+    this.unSubscribeFirebase = FIREBASE_AUTH.onAuthStateChanged(
+      async (user) => {
+        if (user) {
+          const userRef = await createUserProfileDocument(user);
+          userRef.onSnapshot((snapshot) => {
+            this.setState(
+              {
+                currentUser: {
+                  id: snapshot.id,
+                  ...snapshot.data(),
+                },
+              },
+              () => {
+                console.log("State: ", this.state);
+              }
+            );
+          });
+        }
+        this.setState({ currentUser: user });
+      }
+    );
   }
 
   componentWillUnmount() {

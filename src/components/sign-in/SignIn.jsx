@@ -18,7 +18,6 @@ export default class SignIn extends React.Component {
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleGoogleAuth = (event) => {};
   render() {
     return (
       <div className="sign-in">
@@ -46,7 +45,11 @@ export default class SignIn extends React.Component {
           />
           <div className="sign-in-buttons">
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton onClick={SIGN_IN_WITH_GOOGLE} isGoogleSignIn>
+            <CustomButton
+              type="button"
+              onClick={SIGN_IN_WITH_GOOGLE}
+              isGoogleSignIn
+            >
               Sign in with Google
             </CustomButton>
           </div>
