@@ -74,6 +74,7 @@ export default class SignUp extends React.Component {
             name="password"
             type="password"
             value={this.state.password}
+            autoComplete="password"
             handleChange={this.handleChange}
             id="password"
             label="Password"
@@ -82,6 +83,7 @@ export default class SignUp extends React.Component {
           <FormInput
             name="confirmPassword"
             type="password"
+            autoComplete="confirm password"
             value={this.state.confirmPassword}
             handleChange={this.handleChange}
             id="confirmPassword"
