@@ -15,6 +15,7 @@ const StripeButton = ({ price }) => {
       name="Swaraj App"
       billingAddress
       shippingAddress
+      currency="INR"
       description={`Your bill is ${price}`}
       image="https://sendeyo.com/up/d/f3eb2117da"
       amount={STRIPE_PRICE}
