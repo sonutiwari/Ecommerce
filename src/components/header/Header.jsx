@@ -9,36 +9,34 @@ import CartDropdown from "../cart-dropdown/CartDropdown";
 import { showCartOutputSelector } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import "./Header.scss";
-const Header = ({ currentUser, showCart }) => (
-  <div className="header">
-    <Link to="/" className="logo-container">
-      <Logo className="logo" />
-    </Link>
-    <div className="options">
-      <Link to="/shop" className="option">
-        Shop
+const Header = ({ currentUser, showCart }) => {
+  return (
+    <div className="header">
+      <Link to="/" className="logo-container">
+        <Logo className="logo" />
       </Link>
-      <Link to="/contact" className="option">
-        Contact
-      </Link>
-      {currentUser ? (
-        <Link
-          to="/auth"
-          className="option"
-          onClick={() => FIREBASE_AUTH.signOut()}
-        >
-          SIGN OUT
+      <div className="options">
+        <Link to="/shop" className="option">
+          Shop
         </Link>
-      ) : (
-        <Link to="/auth" className="option">
-          SIGN IN
+        <Link to="/contact" className="option">
+          Contact
         </Link>
-      )}
-      <CartIcon />
+        {currentUser ? (
+          <div className="option" onClick={() => FIREBASE_AUTH.signOut()}>
+            SIGN OUT
+          </div>
+        ) : (
+          <Link to="/auth" className="option">
+            SIGN IN
+          </Link>
+        )}
+        <CartIcon />
+      </div>
+      {showCart ? <CartDropdown /> : null}
     </div>
-    {showCart ? <CartDropdown /> : null}
-  </div>
-);
+  );
+};
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   showCart: showCartOutputSelector,

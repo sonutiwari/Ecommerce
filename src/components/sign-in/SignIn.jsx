@@ -7,6 +7,7 @@ import {
 } from "../../firebase/firebase.utils";
 
 import "./SignIn.scss";
+import { setCurrentUser } from "../../redux/user/user.actions";
 export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -20,10 +21,7 @@ export default class SignIn extends React.Component {
     const { email, password } = this.state;
     try {
       await FIREBASE_AUTH.signInWithEmailAndPassword(email, password);
-      this.setState({
-        email: "",
-        password: "",
-      });
+      setCurrentUser({ email });
       document.getElementById("sign-in-form").reset();
     } catch (err) {
       console.error(err.message);

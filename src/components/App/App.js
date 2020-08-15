@@ -52,11 +52,16 @@ class App extends Component {
           <Route path="/shop" component={Shoppage} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route
-            exact={true}
+            exact
             path="/auth"
-            render={() =>
-              this.props.currentUser ? <Redirect exact to="/" /> : <AuthPage />
-            }
+            render={() => {
+              console.table(this.props.currentUser);
+              return this.props.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <AuthPage />
+              );
+            }}
           />
         </Switch>
       </div>
