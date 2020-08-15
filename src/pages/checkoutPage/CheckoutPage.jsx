@@ -9,6 +9,7 @@ import {
 
 import "./CheckoutPage.scss";
 import CheckoutItem from "../../components/checkout-item/CheckoutItem";
+import StripeButton from "../../components/stripe-button/StripeButton";
 const CheckoutPage = ({ cartItems, total }) => {
   return (
     <div className="checkout-page">
@@ -35,6 +36,14 @@ const CheckoutPage = ({ cartItems, total }) => {
       <div className="total">
         <span>Total: &#x20B9;{total}</span>
       </div>
+      <p className="card-info">
+        <span>
+          It is a test only so Please use <strong>4242 4242 4242 4242</strong>{" "}
+          ------ <strong>CVV-123</strong> ----{" "}
+          <strong>Expiry-Any date after Today. tomorrows date will do.</strong>
+        </span>
+      </p>
+      <StripeButton price={total} />
     </div>
   );
 };
