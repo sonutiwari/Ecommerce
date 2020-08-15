@@ -10,19 +10,25 @@ const StripeButton = ({ price }) => {
     alert("Payment Successful");
   };
   return (
-    <StripeCheckout
-      label="Pay Now"
-      name="Swaraj App"
-      billingAddress
-      shippingAddress
-      currency="INR"
-      description={`Your bill is ${price}`}
-      image="https://sendeyo.com/up/d/f3eb2117da"
-      amount={STRIPE_PRICE}
-      stripeKey={PUBLISHABLE_KEY}
-      panelLabel="Pay Now"
-      token={handleToken}
-    />
+    <>
+      {price > 0 ? (
+        <StripeCheckout
+          label="Pay Now"
+          name="Swaraj App"
+          billingAddress
+          shippingAddress
+          currency="INR"
+          description={`Your bill is ${price}`}
+          image="https://sendeyo.com/up/d/f3eb2117da"
+          amount={STRIPE_PRICE}
+          stripeKey={PUBLISHABLE_KEY}
+          panelLabel="Pay Now"
+          token={handleToken}
+        />
+      ) : (
+        <div>Please add an item to see payment button.</div>
+      )}
+    </>
   );
 };
 
