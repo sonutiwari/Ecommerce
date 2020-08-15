@@ -37,7 +37,7 @@
 The project is sample Ecommerce app for a clothing store.
 The User end of the application is almost finished.
 
-<h4>Live preview is coming soon.</h4>
+<h4>Live preview is [Here](https://swaraj-app.herokuapp.com/).</h4>
 <strong>Stay tuned to this space for more update on the same.</strong>
 
 The features can be added and removed with minimum fuss and
